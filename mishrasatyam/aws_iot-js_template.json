@@ -1,0 +1,43 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Publish",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:ap-south-1:77********36:client/sdk-nodejs-*",
+                "arn:aws:iot:ap-south-1:77********36:topic/sensor"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:ap-south-1:77********36:client/sdk-nodejs-*",
+                "arn:aws:iot:ap-south-1:77********36:topicfilter/sensor"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:ap-south-1:77********36:client/sdk-nodejs-*"
+            ]
+        }
+    ]
+}

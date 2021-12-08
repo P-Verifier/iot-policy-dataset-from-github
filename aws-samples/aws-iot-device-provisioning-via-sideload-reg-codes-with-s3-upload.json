@@ -1,0 +1,56 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Condition": {
+                "ForAllValues:StringEquals": {
+                    "iot:Certificate.Subject.CommonName": "${iot:Connection.Thing.ThingName}"
+                }
+            },
+            "Effect": "Allow",
+            "Resource": {
+                "Fn::Sub": "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:client/${!iot:Connection.Thing.ThingName}"
+            }
+        },
+        {
+            "Action": "iot:Publish",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:topic/demofleet/${!iot:Connection.Thing.ThingName}*",
+                "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:topic/$aws/things/${!iot:Connection.Thing.ThingName}*"
+            ]
+        },
+        {
+            "Action": "iot:Subscribe",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:topicfilter/demofleet/${!iot:Connection.Thing.ThingName}*",
+                "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:topicfilter/$aws/things/${!iot:Connection.Thing.ThingName}*"
+            ]
+        },
+        {
+            "Action": "iot:Receive",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:topic/demofleet/${!iot:Connection.Thing.ThingName}*",
+                "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:topic/$aws/things/${!iot:Connection.Thing.ThingName}*"
+            ]
+        },
+        {
+            "Action": "iot:AssumeRoleWithCertificate",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:rolealias/${!iot:Connection.Thing.Attributes[tenant]}"
+            ]
+        }
+    ]
+}

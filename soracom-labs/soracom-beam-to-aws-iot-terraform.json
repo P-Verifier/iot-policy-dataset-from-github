@@ -1,0 +1,28 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect",
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:topic/beamtest"
+        }
+    ]
+}

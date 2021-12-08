@@ -1,0 +1,78 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Condition": {
+                "Bool": {
+                    "iot:Connection.Thing.IsAttached": "true"
+                }
+            },
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:*:client/${iot:Connection.Thing.ThingName}"
+            ]
+        },
+        {
+            "Action": [
+                "iot:GetPendingJobExecutions",
+                "iot:GetThingShadow",
+                "iot:DescribeJobExecution",
+                "iot:UpdateJobExecution",
+                "iot:StartNextPendingJobExecution"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:*:thing/${iot:Connection.Thing.ThingName}"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:*:topic/dt/ac/company1/area1/${iot:Connection.Thing.ThingName}/*",
+                "arn:aws:iot:us-east-1:*:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/*",
+                "arn:aws:iot:us-east-1:*:topic/$aws/things/${iot:Connection.Thing.ThingName}/jobs/get",
+                "arn:aws:iot:us-east-1:*:topic/$aws/things/${iot:Connection.Thing.ThingName}/jobs/get/*",
+                "arn:aws:iot:us-east-1:*:topic/$aws/things/${iot:Connection.Thing.ThingName}/jobs/*/get",
+                "arn:aws:iot:us-east-1:*:topic/$aws/things/${iot:Connection.Thing.ThingName}/jobs/update",
+                "arn:aws:iot:us-east-1:*:topic/$aws/things/${iot:Connection.Thing.ThingName}/jobs/*/update",
+                "arn:aws:iot:us-east-1:*:topic/lwt"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:*:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/*",
+                "arn:aws:iot:us-east-1:*:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/jobs/*",
+                "arn:aws:iot:us-east-1:*:topicfilter/cmd/ac/${iot:Connection.Thing.ThingName}/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:*:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/*",
+                "arn:aws:iot:us-east-1:*:topic/$aws/things/${iot:Connection.Thing.ThingName}/jobs/*",
+                "arn:aws:iot:us-east-1:*:topic/cmd/ac/${iot:Connection.Thing.ThingName}/*"
+            ]
+        }
+    ]
+}

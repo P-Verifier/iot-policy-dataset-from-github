@@ -1,0 +1,37 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iotsitewise:BatchPutAssetPropertyValue",
+            "Condition": {
+                "StringLike": {
+                    "iotsitewise:assetHierarchyPath": [
+                        "/root node asset ID",
+                        "/root node asset ID/*"
+                    ]
+                }
+            },
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "iot:Connect",
+                "iot:DescribeEndpoint",
+                "iot:Publish",
+                "iot:Receive",
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
+}

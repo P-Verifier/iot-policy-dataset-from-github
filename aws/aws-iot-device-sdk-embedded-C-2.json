@@ -1,0 +1,49 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:client/${iot:Connection.Thing.ThingName}"
+        },
+        {
+            "Action": "iot:Subscribe",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update/accepted",
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update/rejected",
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update/delta",
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/delete/accepted",
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/delete/rejected"
+            ]
+        },
+        {
+            "Action": "iot:Receive",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update/accepted",
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update/rejected",
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update/delta",
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/delete/accepted",
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/delete/rejected"
+            ]
+        },
+        {
+            "Action": "iot:Publish",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update",
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/delete",
+                "arn:aws:iot:[AWS_REGION]:[AWS_ACCOUNT_ID]:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/get"
+            ]
+        }
+    ]
+}

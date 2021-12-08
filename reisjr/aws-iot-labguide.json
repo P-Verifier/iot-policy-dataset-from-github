@@ -1,0 +1,46 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Condition": {
+                "Bool": {
+                    "iot:Connection.Thing.IsAttached": "true"
+                }
+            },
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:*:*:client/${iot:Connection.Thing.ThingName}",
+            "Sid": "ConnectUsingClientId"
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:*:*:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update",
+                "arn:aws:iot:*:*:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/get"
+            ],
+            "Sid": "UpdateAndQueryOwnShadow"
+        },
+        {
+            "Action": [
+                "iot:Subscribe",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:*:*:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/*"
+            ],
+            "Sid": "ReceiveShadowChanges"
+        }
+    ]
+}

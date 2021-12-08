@@ -1,0 +1,22 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:{region}:{account}:topic/{topic}/*"
+            ]
+        }
+    ]
+}

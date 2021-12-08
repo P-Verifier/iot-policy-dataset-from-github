@@ -1,0 +1,23 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:eu-central-1:797321539388:client/ESP32-cam"
+        },
+        {
+            "Action": "iot:Subscribe",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:eu-central-1:797321539388:topicfilter/esp32/sub/data"
+        }
+    ]
+}

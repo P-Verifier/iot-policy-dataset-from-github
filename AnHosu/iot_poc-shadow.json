@@ -1,0 +1,31 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:your-region:your-aws-account:topic/my_sensor/reading"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:your-region:your-aws-account:client/my_sensor"
+            ]
+        }
+    ]
+}

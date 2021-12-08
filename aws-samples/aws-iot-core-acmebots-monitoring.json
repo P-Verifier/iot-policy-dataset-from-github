@@ -1,0 +1,50 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<AwsRegion>:<AwsAccountId>:topic/myThings/<botId>/telemetry",
+                "arn:aws:iot:<AwsRegion>:<AwsAccountId>:topic/myThings/<botId>/cmds/ack"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<AwsRegion>:<AwsAccountId>:topicfilter/myThings/<botId>/cmds"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<AwsRegion>:<AwsAccountId>:topic/myThings/<botId>/cmds"
+            ]
+        }
+    ]
+}

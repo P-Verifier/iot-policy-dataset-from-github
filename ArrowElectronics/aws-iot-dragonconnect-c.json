@@ -1,0 +1,40 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "topic/$aws/things/*/shadow/update"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "topicfilter/$aws/things /*/shadow/update/delta"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "topic/$aws/things/*/shadow/update/delta"
+            ]
+        }
+    ]
+}

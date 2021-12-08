@@ -1,0 +1,62 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:GetThingShadow",
+                "iot:UpdateThingShadow",
+                "iot:DeleteThingShadow",
+                "iot:Connect"
+            ],
+            "Condition": {
+                "Bool": {
+                    "iot:Connection.Thing.IsAttached": [
+                        "true"
+                    ]
+                }
+            },
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:us-east-1:123456789012:client/${iot:Connection.Thing.ThingName}"
+        },
+        {
+            "Action": "iot:Publish",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:topic/$aws/things/${iot:ClientId}/shadow/get",
+                "arn:aws:iot:us-east-1:123456789012:topic/$aws/things/${iot:ClientId}/shadow/delete",
+                "arn:aws:iot:us-east-1:123456789012:topic/$aws/things/${iot:ClientId}/shadow/update",
+                "arn:aws:iot:us-east-1:123456789012:topic/${iot:ClientId}/test"
+            ]
+        },
+        {
+            "Action": "iot:Receive",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:topic/$aws/things/${iot:ClientId}/shadow/get/accepted",
+                "arn:aws:iot:us-east-1:123456789012:topic/$aws/things/${iot:ClientId}/shadow/get/rejected",
+                "arn:aws:iot:us-east-1:123456789012:topic/$aws/things/${iot:ClientId}/shadow/update/delta",
+                "arn:aws:iot:us-east-1:123456789012:topic/$aws/things/${iot:ClientId}/shadow/update/accepted",
+                "arn:aws:iot:us-east-1:123456789012:topic/${iot:ClientId}/test"
+            ]
+        },
+        {
+            "Action": "iot:Subscribe",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:topicfilter/$aws/things/${iot:ClientId}/shadow/get/accepted",
+                "arn:aws:iot:us-east-1:123456789012:topicfilter/$aws/things/${iot:ClientId}/shadow/get/rejected",
+                "arn:aws:iot:us-east-1:123456789012:topicfilter/$aws/things/${iot:ClientId}/shadow/update/delta",
+                "arn:aws:iot:us-east-1:123456789012:topicfilter/$aws/things/${iot:ClientId}/shadow/update/accepted",
+                "arn:aws:iot:us-east-1:123456789012:topicfilter/${iot:ClientId}/test"
+            ]
+        }
+    ]
+}

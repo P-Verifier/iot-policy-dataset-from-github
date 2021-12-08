@@ -1,0 +1,25 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Condition": {
+                "ForAllValues:StringEquals": {
+                    "iot:ConnectAttributes": []
+                }
+            },
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
+}

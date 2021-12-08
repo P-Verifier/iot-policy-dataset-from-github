@@ -1,0 +1,40 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:[region]:[account]:client/clientid"
+        },
+        {
+            "Action": "iot:Publish",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:[region]:[account]:topic/$aws/things/[thingName]/shadow/update"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:[region]:[account]:topicfilter/$aws/things/[thingName]/shadow/update/delta",
+                "arn:aws:iot:[region]:[account]:topicfilter/$aws/things/[thingName]/shadow/update/accepted",
+                "arn:aws:iot:[region]:[account]:topicfilter/$aws/things/[thingName]/shadow/update/rejected",
+                "arn:aws:iot:[region]:[account]:topicfilter/$aws/things/[thingName]/shadow/get/accepted",
+                "arn:aws:iot:[region]:[account]:topicfilter/$aws/things/[thingName]/shadow/get/rejected",
+                "arn:aws:iot:[region]:[account]:topicfilter/$aws/things/[thingName]/shadow/delete/accepted",
+                "arn:aws:iot:[region]:[account]:topicfilter/$aws/things/[thingName]/shadow/delete/rejected"
+            ]
+        }
+    ]
+}

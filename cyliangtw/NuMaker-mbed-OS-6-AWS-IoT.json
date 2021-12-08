@@ -1,0 +1,42 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:REGION:ACCOUNT:client/*"
+        },
+        {
+            "Action": "iot:Subscribe",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:REGION:ACCOUNT:topicfilter/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:REGION:ACCOUNT:topic/*"
+        },
+        {
+            "Action": [
+                "iot:UpdateThingShadow",
+                "iot:GetThingShadow",
+                "iot:DeleteThingShadow"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:REGION:ACCOUNT:thing/*"
+        }
+    ]
+}

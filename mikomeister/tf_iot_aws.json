@@ -1,0 +1,31 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${var.region}:${var.account_id}:client/${aws_iot_thing.thing_example.id}"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${var.region}:${var.account_id}:topic/Greenhouse/${aws_iot_thing.thing_example.id}"
+            ]
+        }
+    ]
+}

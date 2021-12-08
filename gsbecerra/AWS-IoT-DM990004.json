@@ -1,0 +1,58 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:client/${iot:ClientId}"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topic/$aws/things/${iot:ClientId}/shadow/update",
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topic/$aws/things/${iot:ClientId}/shadow/get"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topicfilter/$aws/things/${iot:ClientId}/shadow/update/delta",
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topicfilter/$aws/things/${iot:ClientId}/shadow/update/accepted",
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topicfilter/$aws/things/${iot:ClientId}/shadow/update/rejected",
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topicfilter/$aws/things/${iot:ClientId}/shadow/get/accepted",
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topicfilter/$aws/things/${iot:ClientId}/shadow/get/rejected"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topic/$aws/things/${iot:ClientId}/shadow/update/delta",
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topic/$aws/things/${iot:ClientId}/shadow/update/accepted",
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topic/$aws/things/${iot:ClientId}/shadow/update/rejected",
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topic/$aws/things/${iot:ClientId}/shadow/get/accepted",
+                "arn:aws:iot:<AWS-IoT Region>:<AWS Account Number>:topic/$aws/things/${iot:ClientId}/shadow/get/rejected"
+            ]
+        }
+    ]
+}

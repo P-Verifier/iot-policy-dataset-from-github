@@ -1,0 +1,31 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:DescribeJobExecution",
+                "iot:GetPendingJobExecutions",
+                "iot:UpdateJobExecution",
+                "iot:StartNextPendingJobExecution",
+                "iot:DeleteThingShadow",
+                "iot:UpdateThingShadow",
+                "iot:GetThingShadow"
+            ],
+            "Effect": "Allow",
+            "Resource": "${thing_arn}"
+        },
+        {
+            "Action": "iot:Connect",
+            "Effect": "Allow",
+            "Resource": "${client_arn}"
+        }
+    ]
+}

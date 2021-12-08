@@ -1,0 +1,31 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Publish",
+                "iot:Subscribe",
+                "iot:Receive",
+                "iot:Connect",
+                "greengrass:*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Action": "iot:AssumeRoleWithCertificate",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:us-west-2:123456789012:rolealias/GreengrassCoreTokenExchangeRoleAlias"
+        }
+    ]
+}

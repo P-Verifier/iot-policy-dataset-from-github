@@ -1,0 +1,27 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "iot:Publish",
+                "iot:Subscribe",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
+}

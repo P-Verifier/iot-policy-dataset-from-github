@@ -1,0 +1,33 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:topic/${iot:Certificate.Subject.CommonName}"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:client/client1",
+                "arn:aws:iot:us-east-1:123456789012:client/client2",
+                "arn:aws:iot:us-east-1:123456789012:client/client3"
+            ]
+        }
+    ]
+}

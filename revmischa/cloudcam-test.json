@@ -1,0 +1,33 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:{region}:{aid}:topicfilter/$aws/things/CameraTest/*",
+                "arn:aws:iot:{region}:{aid}:topicfilter/cloudcam/thumb/request_snapshot",
+                "arn:aws:iot:{region}:{aid}:topic/cloudcam/thumb/store"
+            ]
+        }
+    ]
+}

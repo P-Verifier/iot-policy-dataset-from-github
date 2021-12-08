@@ -1,0 +1,52 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:your-region:your-aws-account:topic/bme680/temperature",
+                "arn:aws:iot:your-region:your-aws-account:topic/bme680/pressure",
+                "arn:aws:iot:your-region:your-aws-account:topic/bme680/humidity",
+                "arn:aws:iot:your-region:your-aws-account:topic/bme680/actions"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:your-region:your-aws-account:topic/bme680/actions"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:your-region:your-aws-account:topicfilter/bme680/actions"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:your-region:your-aws-account:client/simple-subscribing"
+            ]
+        }
+    ]
+}

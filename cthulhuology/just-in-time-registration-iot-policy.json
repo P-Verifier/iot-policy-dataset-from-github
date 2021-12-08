@@ -1,0 +1,60 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:client/${iot:Certificate.Subject.CommonName}"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topic/$aws/things/${iot:Connection.Thing.ThingName}/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topic/$aws/things/${iot:Connection.Thing.ThingName}/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:UpdateThingShadow",
+                "iot:GetThingShadow",
+                "iot:DeleteThingShadow"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:thing/${iot:Connection.Thing.ThingName}"
+            ]
+        }
+    ]
+}

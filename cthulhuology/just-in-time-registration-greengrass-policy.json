@@ -1,0 +1,64 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topicfilter/$aws/things/${iot:Certificate.Subject.CommonName}-gda/*",
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topicfilter/$aws/things/${iot:Certificate.Subject.CommonName}-gcm/*",
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topicfilter/$aws/things/${iot:Certificate.Subject.CommonName}-gci/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topic/$aws/things/${iot:Certificate.Subject.CommonName}-gda/*",
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topic/$aws/things/${iot:Certificate.Subject.CommonName}-gcm/*",
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topic/$aws/things/${iot:Certificate.Subject.CommonName}-gci/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topic/$aws/things/${iot:Certificate.Subject.CommonName}-gda/*",
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topic/$aws/things/${iot:Certificate.Subject.CommonName}-gcm/*",
+                "arn:aws:iot:${process.env.AWS_REGION}:${process.env.AccountId}:topic/$aws/things/${iot:Certificate.Subject.CommonName}-gci/*"
+            ]
+        },
+        {
+            "Action": [
+                "greengrass:*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Condition": {
+                "Bool": {
+                    "iot:Connection.Thing.IsAttached ": [
+                        "true"
+                    ]
+                }
+            },
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:topic/${iot:Connection.Thing.ThingTypeName}/${iot:Connection.Thing.ThingName}/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:topic/${iot:Connection.Thing.ThingTypeName}/${iot:Connection.Thing.ThingName}/*",
+                "arn:aws:iot:us-east-1:123456789012:topic/${iot:Connection.Thing.ThingTypeName}/master_control/*"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<region>:<account>:topic/${cognito-identity.amazonaws.com:aud}/*/${cognito-identity.amazonaws.com:sub}"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<region>:<account>:topicfilter/${cognito-identity.amazonaws.com:aud}/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<region>:<account>:topic/${cognito-identity.amazonaws.com:aud}/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "iot:ClientId": "${cognito-identity.amazonaws.com:sub}*"
+                }
+            },
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<region>:<account>:client/${cognito-identity.amazonaws.com:sub}*"
+            ]
+        }
+    ]
+}

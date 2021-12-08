@@ -1,0 +1,42 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:client/client1",
+                "arn:aws:iot:us-east-1:123456789012:client/client2",
+                "arn:aws:iot:us-east-1:123456789012:client/client3"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:topicfilter/${iot:ClientId}/room*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:topic/${iot:ClientId}/room*"
+            ]
+        }
+    ]
+}

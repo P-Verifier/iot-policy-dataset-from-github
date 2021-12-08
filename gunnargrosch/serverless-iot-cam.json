@@ -1,0 +1,33 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:eu-west-1:012345678912:client/*"
+        },
+        {
+            "Action": "iot:Subscribe",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:eu-west-1:012345678912:topicfilter/topicname/sub"
+        },
+        {
+            "Action": "iot:Receive",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:eu-west-1:012345678912:topic/topicname/sub"
+        },
+        {
+            "Action": "iot:Publish",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:eu-west-1:012345678912:topic/topicname/pub"
+        }
+    ]
+}

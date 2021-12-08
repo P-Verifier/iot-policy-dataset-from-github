@@ -1,0 +1,58 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:region:account-id:client/SiteWiseTutorialDevice*"
+        },
+        {
+            "Action": "iot:Publish",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:region:account-id:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update",
+                "arn:aws:iot:region:account-id:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/delete",
+                "arn:aws:iot:region:account-id:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/get"
+            ]
+        },
+        {
+            "Action": "iot:Receive",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:region:account-id:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update/accepted",
+                "arn:aws:iot:region:account-id:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/delete/accepted",
+                "arn:aws:iot:region:account-id:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/get/accepted",
+                "arn:aws:iot:region:account-id:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update/rejected",
+                "arn:aws:iot:region:account-id:topic/$aws/things/${iot:Connection.Thing.ThingName}/shadow/delete/rejected"
+            ]
+        },
+        {
+            "Action": "iot:Subscribe",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:region:account-id:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update/accepted",
+                "arn:aws:iot:region:account-id:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/delete/accepted",
+                "arn:aws:iot:region:account-id:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/get/accepted",
+                "arn:aws:iot:region:account-id:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/update/rejected",
+                "arn:aws:iot:region:account-id:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/shadow/delete/rejected"
+            ]
+        },
+        {
+            "Action": [
+                "iot:GetThingShadow",
+                "iot:UpdateThingShadow",
+                "iot:DeleteThingShadow"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:region:account-id:thing/SiteWiseTutorialDevice*"
+        }
+    ]
+}

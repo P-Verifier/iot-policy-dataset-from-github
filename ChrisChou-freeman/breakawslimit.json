@@ -1,0 +1,45 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Receive",
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-west-2:%s:*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-west-2:771811300480:topic/Sugr/Sense/Joy/Light/Request/JY01pcw4ut9t0",
+                "arn:aws:iot:us-west-2:771811300480:topic/Sugr/Sense/Joy/Light/Request/JY033o00kcrp0"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-west-2:771811300480:topicfilter/Sugr/Sense/Joy/Light/Response/JY01pcw4ut9t0",
+                "arn:aws:iot:us-west-2:771811300480:topicfilter/Sugr/Sense/Joy/Light/Response/JY033o00kcrp0",
+                "arn:aws:iot:us-west-2:771811300480:topicfilter/Sugr/Sense/Joy/Light/Notify/JY01pcw4ut9t0",
+                "arn:aws:iot:us-west-2:771811300480:topicfilter/Sugr/Sense/Joy/Light/Notify/JY033o00kcrp0"
+            ]
+        }
+    ]
+}

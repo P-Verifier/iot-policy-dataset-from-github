@@ -1,0 +1,69 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:region:account-id:client/core-device-thing-name*"
+        },
+        {
+            "Action": [
+                "iot:Receive",
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:region:account-id:topic/$aws/things/core-device-thing-name*/greengrass/health/json",
+                "arn:aws:iot:region:account-id:topic/$aws/things/core-device-thing-name*/greengrassv2/health/json",
+                "arn:aws:iot:region:account-id:topic/$aws/things/core-device-thing-name*/jobs/*",
+                "arn:aws:iot:region:account-id:topic/$aws/things/core-device-thing-name*/shadow/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:region:account-id:topicfilter/$aws/things/core-device-thing-name*/jobs/*",
+                "arn:aws:iot:region:account-id:topicfilter/$aws/things/core-device-thing-name*/shadow/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:GetThingShadow",
+                "iot:UpdateThingShadow",
+                "iot:DeleteThingShadow"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:region:account-id:thing/core-device-thing-name*"
+            ]
+        },
+        {
+            "Action": "iot:AssumeRoleWithCertificate",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:region:account-id:rolealias/token-exchange-role-alias-name"
+        },
+        {
+            "Action": [
+                "greengrass:GetComponentVersionArtifact",
+                "greengrass:ResolveComponentCandidates",
+                "greengrass:GetDeploymentConfiguration",
+                "greengrass:ListThingGroupsForCoreDevice"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
+}

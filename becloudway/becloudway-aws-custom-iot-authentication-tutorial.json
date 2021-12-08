@@ -1,0 +1,34 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe",
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:eu-west-1:*:topicfilter//event/testuser",
+                "arn:aws:iot:eu-west-1:*:topic//event/testuser"
+            ]
+        }
+    ]
+}

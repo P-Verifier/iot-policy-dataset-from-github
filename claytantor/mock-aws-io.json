@@ -1,0 +1,48 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Publish",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:undefined:topic/ingress/d3333b61-yaza32",
+                "arn:aws:iot:us-east-1:undefined:topic/egress/d3333b61-yaza32",
+                "arn:aws:iot:us-east-1:undefined:topic/pubsub/d3333b61-yaza32",
+                "arn:aws:iot:us-east-1:undefined:topic/flashlex/test"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:undefined:topicfilter/ingress/d3333b61-yaza32",
+                "arn:aws:iot:us-east-1:undefined:topicfilter/egress/d3333b61-yaza32",
+                "arn:aws:iot:us-east-1:undefined:topicfilter/pubsub/d3333b61-yaza32"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:undefined:client/d3333b61-yaza32",
+                "arn:aws:iot:us-east-1:undefined:client/d3333b61-yaza32-backend"
+            ]
+        }
+    ]
+}

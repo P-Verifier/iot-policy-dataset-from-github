@@ -1,0 +1,41 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Subscribe",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": "*",
+            "Sid": "MQTTRead"
+        },
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:*:${AWS::AccountId}:client/${iot:Connection.Thing.ThingName}",
+            "Sid": "MQTTConnect"
+        },
+        {
+            "Action": [
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:*:${AWS::AccountId}:topic/${iot:Certificate.Subject.CommonName}",
+                "arn:aws:iot:*:${AWS::AccountId}:topic/$aws/things/${iot:Certificate.Subject.CommonName}/shadow/update"
+            ],
+            "Sid": "MQTTWrite"
+        }
+    ]
+}

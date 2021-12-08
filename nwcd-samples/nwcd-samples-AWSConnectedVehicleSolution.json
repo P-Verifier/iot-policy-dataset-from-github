@@ -1,0 +1,44 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws-cn:iot:${region}:${accountId}:client/${iot:Certificate.Subject.CommonName}"
+        },
+        {
+            "Action": [
+                "iot:Publish",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws-cn:iot:${region}:${accountId}:topic/${telemetricsTopic}/${iot:Certificate.Subject.Pseudonym}",
+                "arn:aws-cn:iot:${region}:${accountId}:topic/${aggregationTopic}/${iot:Certificate.Subject.Pseudonym}",
+                "arn:aws-cn:iot:${region}:${accountId}:topic/${dtcTopic}/${iot:Certificate.Subject.Pseudonym}",
+                "arn:aws-cn:iot:${region}:${accountId}:topic/${alertTopic}/${iot:Certificate.Subject.Pseudonym}/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws-cn:iot:${region}:${accountId}:topicfilter/${telemetricsTopic}/${iot:Certificate.Subject.Pseudonym}",
+                "arn:aws-cn:iot:${region}:${accountId}:topicfilter/${dtcTopic}/${iot:Certificate.Subject.Pseudonym}",
+                "arn:aws-cn:iot:${region}:${accountId}:topicfilter/${alertTopic}/${iot:Certificate.Subject.Pseudonym}/*"
+            ]
+        }
+    ]
+}

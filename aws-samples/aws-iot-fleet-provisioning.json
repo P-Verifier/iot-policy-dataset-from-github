@@ -1,0 +1,39 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "iot:Publish",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:XXXXXXXXXXXX:topic/$aws/certificates/create/*",
+                "arn:aws:iot:us-east-1:XXXXXXXXXXXX:topic/$aws/provisioning-templates/birthing_template/provision/*"
+            ]
+        },
+        {
+            "Action": "iot:Subscribe",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:XXXXXXXXXXXX:topicfilter/$aws/certificates/create/*",
+                "arn:aws:iot:us-east-1:XXXXXXXXXXXX:topicfilter/$aws/provisioning-templates/birthing_template/provision/*"
+            ]
+        }
+    ]
+}

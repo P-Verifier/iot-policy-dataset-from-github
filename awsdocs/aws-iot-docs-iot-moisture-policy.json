@@ -1,0 +1,58 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:region:account:client/RaspberryPi"
+        },
+        {
+            "Action": "iot:Publish",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:region:account:topic/$aws/things/RaspberryPi/shadow/update",
+                "arn:aws:iot:region:account:topic/$aws/things/RaspberryPi/shadow/delete",
+                "arn:aws:iot:region:account:topic/$aws/things/RaspberryPi/shadow/get"
+            ]
+        },
+        {
+            "Action": "iot:Receive",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:region:account:topic/$aws/things/RaspberryPi/shadow/update/accepted",
+                "arn:aws:iot:region:account:topic/$aws/things/RaspberryPi/shadow/delete/accepted",
+                "arn:aws:iot:region:account:topic/$aws/things/RaspberryPi/shadow/get/accepted",
+                "arn:aws:iot:region:account:topic/$aws/things/RaspberryPi/shadow/update/rejected",
+                "arn:aws:iot:region:account:topic/$aws/things/RaspberryPi/shadow/delete/rejected"
+            ]
+        },
+        {
+            "Action": "iot:Subscribe",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:region:account:topicfilter/$aws/things/RaspberryPi/shadow/update/accepted",
+                "arn:aws:iot:region:account:topicfilter/$aws/things/RaspberryPi/shadow/delete/accepted",
+                "arn:aws:iot:region:account:topicfilter/$aws/things/RaspberryPi/shadow/get/accepted",
+                "arn:aws:iot:region:account:topicfilter/$aws/things/RaspberryPi/shadow/update/rejected",
+                "arn:aws:iot:region:account:topicfilter/$aws/things/RaspberryPi/shadow/delete/rejected"
+            ]
+        },
+        {
+            "Action": [
+                "iot:GetThingShadow",
+                "iot:UpdateThingShadow",
+                "iot:DeleteThingShadow"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:region:account:thing/RaspberryPi"
+        }
+    ]
+}

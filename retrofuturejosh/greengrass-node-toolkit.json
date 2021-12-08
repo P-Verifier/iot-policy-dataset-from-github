@@ -1,0 +1,39 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Publish",
+                "iot:Subscribe",
+                "iot:Connect",
+                "iot:Receive",
+                "iot:GetThingShadow",
+                "iot:DeleteThingShadow",
+                "iot:UpdateThingShadow"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1: 123456789012:topic/$aws/things/myNewThing/shadow/*",
+                "arn:aws:iot:us-east-1:878186260336:topic/$aws/things/myNewDevice/shadow/*"
+            ]
+        },
+        {
+            "Action": [
+                "greengrass:GetConnectivityInfo",
+                "greengrass:UpdateConnectivityInfo"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}

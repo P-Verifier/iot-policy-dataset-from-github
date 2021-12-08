@@ -1,0 +1,62 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:{region}:{account_id}:client/wss-*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:GetThingShadow",
+                "iot:UpdateThingShadow"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:{region}:{account_id}:thing/{thing_name}"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:{region}:{account_id}:topicfilter/$aws/things/{thing_name}/shadow/update",
+                "arn:aws:iot:{region}:{account_id}:topicfilter/$aws/things/{thing_name}/shadow/update/accepted",
+                "arn:aws:iot:{region}:{account_id}:topicfilter/$aws/things/{thing_name}/shadow/get",
+                "arn:aws:iot:{region}:{account_id}:topicfilter/$aws/things/{thing_name}/shadow/get/accepted",
+                "arn:aws:iot:{region}:{account_id}:topicfilter/cloudcam/{thing_name}/notifications",
+                "arn:aws:iot:{region}:{account_id}:topicfilter/cloudcam/{thing_name}/commands"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish",
+                "iot:Receive"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:{region}:{account_id}:topic/$aws/things/{thing_name}/shadow/update",
+                "arn:aws:iot:{region}:{account_id}:topic/$aws/things/{thing_name}/shadow/update/accepted",
+                "arn:aws:iot:{region}:{account_id}:topic/$aws/things/{thing_name}/shadow/get",
+                "arn:aws:iot:{region}:{account_id}:topic/$aws/things/{thing_name}/shadow/get/accepted",
+                "arn:aws:iot:{region}:{account_id}:topic/cloudcam/{thing_name}/notifications",
+                "arn:aws:iot:{region}:{account_id}:topic/cloudcam/{thing_name}/commands",
+                "arn:aws:iot:{region}:{account_id}:topic/cloudcam/{thing_name}/webrtc/setup"
+            ]
+        }
+    ]
+}

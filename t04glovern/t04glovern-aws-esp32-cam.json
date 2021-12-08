@@ -1,0 +1,35 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*/*",
+            "topic/$aws/things/*/shadow/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*/*",
+            "topic/$aws/things/*/shadow/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": "iot:Connect",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:us-east-1:012345678912:client/*"
+        },
+        {
+            "Action": "iot:Subscribe",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:us-east-1:012345678912:topicfilter/foo"
+        },
+        {
+            "Action": "iot:Receive",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:us-east-1:012345678912:topic/foo"
+        },
+        {
+            "Action": "iot:Publish",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:us-east-1:012345678912:topic/foo"
+        }
+    ]
+}

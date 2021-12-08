@@ -1,0 +1,68 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:<%= region %>:<%= account %>:client/<%= thingname %>*"
+        },
+        {
+            "Action": [
+                "iot:Receive",
+                "iot:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<%= region %>:<%= account %>:topic/$aws/things/<%= thingname %>*/greengrass/health/json",
+                "arn:aws:iot:<%= region %>:<%= account %>:topic/$aws/things/<%= thingname %>*/greengrassv2/health/json",
+                "arn:aws:iot:<%= region %>:<%= account %>:topic/$aws/things/<%= thingname %>*/jobs/*",
+                "arn:aws:iot:<%= region %>:<%= account %>:topic/$aws/things/<%= thingname %>*/shadow/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Subscribe"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<%= region %>:<%= account %>:topicfilter/$aws/things/<%= thingname %>*/jobs/*",
+                "arn:aws:iot:<%= region %>:<%= account %>:topicfilter/$aws/things/<%= thingname %>*/shadow/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:GetThingShadow",
+                "iot:UpdateThingShadow",
+                "iot:DeleteThingShadow"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:<%= region %>:<%= account %>:thing/<%= thingname %>*"
+            ]
+        },
+        {
+            "Action": "iot:AssumeRoleWithCertificate",
+            "Effect": "Allow",
+            "Resource": "arn:aws:iot:<%= region %>:<%= account %>:rolealias/<%= rolealiasname %>"
+        },
+        {
+            "Action": [
+                "greengrass:GetComponentVersionArtifact",
+                "greengrass:ResolveComponentCandidates",
+                "greengrass:GetDeploymentConfiguration"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
+}

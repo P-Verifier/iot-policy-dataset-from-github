@@ -1,0 +1,32 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:AttachPolicy",
+                "lambda:InvokeFunction",
+                "iot:AttachThingPrincipal",
+                "iot:Connect",
+                "iot:DescribeCertificate",
+                "iot:ListAttachedPolicies",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents",
+                "logs:CreateLogStream",
+                "iot:ListPrincipalThings",
+                "iot:UpdateCertificate",
+                "iot:CreateKeysAndCertificate",
+                "iot:CreateCertificateFromCsr"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
+}

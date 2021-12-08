@@ -1,0 +1,39 @@
+{
+    "Expected": {
+        "PublishUpperBound": [
+            "topic/*"
+        ],
+        "ReceiveUpperBound": [
+            "topic/*"
+        ],
+        "type": 4
+    },
+    "Statement2": [
+        {
+            "Action": [
+                "iot:Connect"
+            ],
+            "Condition": {
+                "ForAllValues:StringEquals": {
+                    "iot:ConnectAttributes": [
+                        "LastWill"
+                    ]
+                }
+            },
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:client/*"
+            ]
+        },
+        {
+            "Action": [
+                "iot:Publish",
+                "iot:RetainPublish"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iot:us-east-1:123456789012:topic/will"
+            ]
+        }
+    ]
+}
